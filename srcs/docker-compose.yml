@@ -1,0 +1,14 @@
+services:
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./requirements/nginx
+    ports:
+      - 443:443
+
+  mariadb:
+    container_name: mariadb
+    restart: always
+    build: ./requirements/mariadb
+    ports:
+      - 3306:3306
