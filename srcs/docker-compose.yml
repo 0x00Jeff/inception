@@ -3,6 +3,8 @@ services:
     container_name: nginx
     restart: always
     build: ./requirements/nginx
+#    networks:
+#      - inception
     ports:
       - 443:443
 
@@ -10,5 +12,14 @@ services:
     container_name: mariadb
     restart: always
     build: ./requirements/mariadb
+#    networks:
+#      - inception
+    env_file:
+      - .env
     ports:
       - 3306:3306
+
+#networks:
+  #inception:
+    #name: inception
+    #driver: bridge
