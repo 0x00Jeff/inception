@@ -1,6 +1,6 @@
 FROM debian:12
 
-RUN apt-get update -y && apt-get install nginx openssl -y # ncat curl less certbot -y
+RUN apt-get update -y && apt-get install nginx openssl -y
 
 RUN cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.back
 
@@ -12,10 +12,6 @@ COPY index.html /var/www/html/
 
 RUN chmod +r -Rv /var/www/html*
 
-#EXPOSE 8080
-
 EXPOSE 443
-
-#EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
