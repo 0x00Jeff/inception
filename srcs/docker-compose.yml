@@ -1,6 +1,7 @@
 services:
   nginx:
     container_name: nginx
+    image: nginx:69
     restart: always
     build: ./requirements/nginx
     depends_on:
@@ -12,6 +13,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress:69
     restart: always
     build: ./requirements/wordpress
     depends_on:
@@ -25,6 +27,7 @@ services:
 
   mariadb:
     container_name: mariadb
+    image: mariadb:69
     restart: always
     build: ./requirements/mariadb
     networks:
@@ -33,9 +36,9 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "nc", "-zv", "mariadb", "3306"]
-      interval: 1s
+      interval: 2s
       timeout: 5s
-      retries: 10
+      retries: 20
 
 networks:
   inception:
