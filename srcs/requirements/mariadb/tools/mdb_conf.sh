@@ -7,9 +7,9 @@ sleep 5
 
 #---------------------------------------------------mariadb config---------------------------------------------------#
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DB}\`;"
+mariadb -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
 mariadb -e "CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
-mariadb -e "GRANT ALL PRIVILEGES ON ${MYSQL_DB}.* TO \`${MYSQL_USER}\`@'%';"
+mariadb -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO \`${MYSQL_USER}\`@'%';"
 mariadb -e "FLUSH PRIVILEGES;"
 
 #---------------------------------------------------mariadb restart---------------------------------------------------#
