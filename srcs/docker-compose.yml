@@ -1,30 +1,39 @@
 services:
   nginx:
     container_name: nginx
-    image: nginx:69
-    restart: on-failure
+    restart: always
     build: ./requirements/nginx
 #    depends_on:
-#      - wordpress
+ #     - wordpress
     networks:
       - inception
     ports:
       - 443:443
+
+  wordpress:
+    container_name: wordpress
+    restart: always
+    build: ./requirements/wordpress
+#    depends_on:
+#      - mariadb
+    networks:
+      - inception
     env_file:
       - .env
-
+#    ports:
+#      - 9000:9000
 
   mariadb:
     container_name: mariadb
-    image: mariadb:69
-    restart: on-failure
+    restart: always
     build: ./requirements/mariadb
     networks:
       - inception
-    ports:
-      - 3306:3306
     env_file:
       - .env
+#    ports:
+#      - 3306:3306
+
 
 networks:
   inception:
