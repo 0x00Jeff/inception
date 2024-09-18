@@ -11,4 +11,7 @@ stop:
 	docker-compose -f ./srcs/docker-compose.yml stop -t 1
 clean:
 	docker-compose -f ./srcs/docker-compose.yml down -v -t 1
+prune:
+	docker system prune -a -f
+
 re: clean all

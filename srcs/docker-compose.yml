@@ -3,8 +3,8 @@ services:
     container_name: nginx
     restart: always
     build: ./requirements/nginx
-#    depends_on:
- #     - wordpress
+    depends_on:
+      - wordpress
     networks:
       - inception
     ports:
@@ -14,14 +14,14 @@ services:
     container_name: wordpress
     restart: always
     build: ./requirements/wordpress
-#    depends_on:
-#      - mariadb
+    depends_on:
+      mariadb:
+        condition : service_healthy
+
     networks:
       - inception
     env_file:
       - .env
-#    ports:
-#      - 9000:9000
 
   mariadb:
     container_name: mariadb
@@ -31,9 +31,11 @@ services:
       - inception
     env_file:
       - .env
-#    ports:
-#      - 3306:3306
-
+    healthcheck:
+      test: ["CMD", "nc", "-zv", "mariadb", "3306"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
 
 networks:
   inception:
