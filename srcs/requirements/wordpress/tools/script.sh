@@ -25,6 +25,8 @@ sed -i "s|localhost|${MY_MYSQL_HOST}|g" "${WORDPRESS_CONFIG}"
 wp core install --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL} --path=/var/www/html --skip-email
 
 # download wordpress theme
-wp theme install codeify --activate --path=/var/www/html
+#wp theme install codeify --activate --path=/var/www/html
+
+service php8.2-fpm start
 
 sleep infinity

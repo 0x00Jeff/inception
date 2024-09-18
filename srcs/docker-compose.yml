@@ -10,6 +10,8 @@ services:
       - inception
     ports:
       - 443:443
+    volumes:
+      - ./data/wordpress:/var/www/html
 
   wordpress:
     container_name: wordpress
@@ -19,6 +21,8 @@ services:
     depends_on:
       mariadb:
         condition : service_healthy
+    volumes:
+      - ./data/wordpress:/var/www/html
 
     networks:
       - inception
