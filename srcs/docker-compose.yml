@@ -28,7 +28,6 @@ services:
     env_file:
       - .env
 
-        # TODO : add a volume to this one!!
   mariadb:
     container_name: mariadb
     image: mariadb:69
