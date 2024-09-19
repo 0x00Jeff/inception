@@ -11,7 +11,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - ./data/wordpress:/var/www/html
+      - wordpress_vol:/var/www/html
 
   wordpress:
     container_name: wordpress
@@ -22,8 +22,7 @@ services:
       mariadb:
         condition : service_healthy
     volumes:
-      - ./data/wordpress:/var/www/html
-
+    - wordpress_vol:/var/www/html
     networks:
       - inception
     env_file:
@@ -44,6 +43,26 @@ services:
       interval: 2s
       timeout: 5s
       retries: 20
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+
+
+volumes:
+  wordpress_vol:
+    name: wordpress_vol
+    driver: local
+    driver_opts:
+      o: bind
+      type: 'none'
+      device: /home/$USER/data/wordpress
+
+  mariadb_vol:
+      name: mariadb_vol
+      driver: local
+      driver_opts:
+        o: bind
+        type: 'none'
+        device: /home/$USER/data/mariadb
 
 networks:
   inception:

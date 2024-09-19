@@ -10,7 +10,7 @@ wp core download --path=/var/www/html/
 
 # copy config file
 WORDPRESS_CONFIG="/var/www/html/wp-config.php"
-mv /wp-config.php ${WORDPRESS_CONFIG}
+cp /wp-config.php ${WORDPRESS_CONFIG}
 
 # set the right config for wordpress
 sed -i "s|database_name_here|${MYSQL_DATABASE}|g" "${WORDPRESS_CONFIG}"
