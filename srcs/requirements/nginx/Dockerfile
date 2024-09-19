@@ -1,6 +1,6 @@
 FROM debian:12
 
-RUN apt-get update -y && apt-get install nginx openssl -y
+RUN apt-get update -y && apt-get install nginx openssl -y iputils-ping vim
 
 #RUN cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.back
 

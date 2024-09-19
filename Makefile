@@ -14,8 +14,8 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down -v -t 1
 
 clean: down
-	rm -rf /home/${USER}/data/wordpress/*
-	rm -rf /home/${USER}/data/mariadb/*
+	sudo rm -rf /home/${USER}/data/wordpress/*
+	sudo rm -rf /home/${USER}/data/mariadb/*
 
 prune: clean
 	docker system prune -a -f
