@@ -15,6 +15,8 @@ RUN chmod 755 /var/www/html \
 
 COPY tools/script.sh /usr/local/bin/
 
+COPY conf/wp-config.php /
+
 ENV WP_CLI_ALLOW_ROOT=1
 
 EXPOSE 9000
