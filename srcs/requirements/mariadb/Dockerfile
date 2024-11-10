@@ -1,8 +1,10 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update -y
 
-RUN apt-get install -y mariadb-server netcat iputils-ping vim
+RUN apt-get install -y mariadb-server netcat iputils-ping vim && \
+	apt clean && \
+	rm -rf /var/lib/apt/lists/*
 
 COPY tools/mariadb_init.sh /bin/mariadb_init.sh
 
