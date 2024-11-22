@@ -19,6 +19,4 @@ COPY conf/wp-config.php /
 
 ENV WP_CLI_ALLOW_ROOT=1
 
-EXPOSE 9000
-
 CMD ["bash", "/usr/local/bin/script.sh"]
