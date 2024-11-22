@@ -14,5 +14,5 @@ mariadb -e "FLUSH PRIVILEGES;"
 
 #---------------------------------------------------mariadb restart---------------------------------------------------#
 
-mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
+mysqladmin -u root shutdown
 mysqld_safe --port=3306 --bind-address=0.0.0.0 --datadir='/var/lib/mysql'

@@ -1,6 +1,6 @@
 FROM debian:12
 
-RUN apt-get update -y && apt-get install nginx openssl -y iputils-ping vim && \
+RUN apt-get update -y && apt-get -y install nginx openssl && \
 	apt clean && \
 	rm -rf /var/lib/apt/lists/*
 
