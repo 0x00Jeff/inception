@@ -1,19 +1,22 @@
-FROM debian:12
+FROM debian:bullseye
+
+RUN mkdir -p /var/www/html
 
 RUN apt update -y && apt install -y php \
-	php-cli php-fpm php-mysql \
-	php-json php-opcache php-mbstring \
-	php-xml php-gd php-curl wordpress curl ncat && \
+	php-fpm php-mysql curl && \
 	apt clean && \
-	rm -rf /var/lib/apt/lists/* && \
-	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	rm -rf /var/lib/apt/lists/*
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+
+COPY tools/script.sh /usr/local/bin/
 
 RUN chmod 755 /var/www/html \
 	&& chown -R www-data:www-data /var/www/html \
 	&& chmod +x wp-cli.phar \
+	&& chmod +x /usr/local/bin/script.sh \
 	&& mv wp-cli.phar /usr/local/bin/wp
-
-COPY tools/script.sh /usr/local/bin/
 
 COPY conf/wp-config.php /
 
