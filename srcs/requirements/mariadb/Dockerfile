@@ -1,8 +1,8 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update -y
 
-RUN apt-get install -y mariadb-server netcat && \
+RUN apt-get install -y mariadb-server netcat-openbsd && \
 	apt clean && \
 	rm -rf /var/lib/apt/lists/*
 

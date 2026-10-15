@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update -y && apt-get -y install nginx openssl && \
 	apt clean && \
@@ -8,7 +8,7 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/nginx/
 
 COPY conf/nginx.conf /etc/nginx/sites-available/default
 
-RUN chmod +r -R /var/www/html*
+#RUN chmod +r -R /var/www/html*
 
 EXPOSE 443
 

@@ -1,9 +1,9 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN mkdir -p /var/www/html
 
 RUN apt update -y && apt install -y php \
-	php-fpm php-mysql curl && \
+	php-fpm php-mysql curl netcat-openbsd && \
 	apt clean && \
 	rm -rf /var/lib/apt/lists/*
 

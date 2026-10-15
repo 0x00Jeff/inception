@@ -4,14 +4,15 @@ services:
     image: nginx:69
     restart: always
     build: ./requirements/nginx
-    depends_on:
-      - wordpress
     networks:
       - inception
     ports:
       - 443:443
     volumes:
       - wordpress_vol:/var/www/html
+    depends_on:
+      wordpress:
+        condition: service_healthy
 
   wordpress:
     container_name: wordpress
@@ -20,13 +21,18 @@ services:
     build: ./requirements/wordpress
     depends_on:
       mariadb:
-        condition : service_healthy
+        condition: service_healthy
     volumes:
     - wordpress_vol:/var/www/html
     networks:
       - inception
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "nc", "-z", "wordpress", "9000"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   mariadb:
     container_name: mariadb

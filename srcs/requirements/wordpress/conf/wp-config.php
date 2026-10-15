@@ -39,10 +39,6 @@ define( 'DB_COLLATE', '' );
 
 /** db home and siteurl. */
 
-define('WP_HOME','wp_home_here');
-
-define('WP_SITEURL','wp_siteurl_here');
-
 /**#@+
  * Authentication unique keys and salts.
  *
